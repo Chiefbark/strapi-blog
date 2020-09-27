@@ -9,7 +9,7 @@ export default function App() {
 		<BrowserRouter>
 			<Switch>
 				<Route path="/" exact component={Home}/>
-				<Route path="/post/:id" exact component={Post}/>
+				<Route path="/post/:slug" exact component={Post}/>
 			</Switch>
 		</BrowserRouter>
 	);
