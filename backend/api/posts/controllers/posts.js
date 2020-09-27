@@ -10,7 +10,7 @@ const {sanitizeEntity} = require('strapi-utils');
 module.exports = {
 
   async find(ctx) {
-    let entity = strapi.services.posts.find({published: true});
+    let entity = await strapi.services.posts.find({published: true});
 
     return sanitizeEntity(entity, {model: strapi.models.posts});
   },
