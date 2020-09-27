@@ -1,0 +1,51 @@
+.home-nav {
+  position: fixed;
+  z-index: 100;
+  width: calc(100% - 128px);
+  display: flex;
+  align-items: center;
+  background-color: #007BFF;
+  color: #FFF;
+  box-shadow: 0 0 5px 1px #003876AA;
+  padding: 0 64px;
+  margin-bottom: 32px;
+}
+.home-nav > h2 {
+  flex: 1;
+}
+.home-nav > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home-nav > div > input {
+  width: 0;
+  border: unset;
+  border-radius: 4px;
+  outline: none;
+  transition: width 0.25s ease, padding 0.25s ease;
+  padding: 8px 0;
+  margin-right: 16px;
+}
+.home-nav > div > input.shown {
+  width: 250px;
+  padding: 8px 12px;
+}
+.home-nav > div > svg {
+  cursor: pointer;
+  color: #FFFFFFAA;
+  transition: color 0.25s ease;
+}
+.home-nav > div > svg:hover {
+  color: #FFF;
+}
+
+.home-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 100px 15%;
+}
+
+/*# sourceMappingURL=styles.css.map */
