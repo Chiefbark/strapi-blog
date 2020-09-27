@@ -43,6 +43,11 @@
       "type": "boolean",
       "default": false,
       "private": true
+    },
+    "author": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "user"
     }
   }
 }
