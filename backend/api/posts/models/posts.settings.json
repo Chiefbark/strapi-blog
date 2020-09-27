@@ -26,15 +26,6 @@
       "type": "richtext",
       "required": true
     },
-    "thumbnail": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
-      "plugin": "upload",
-      "required": false
-    },
     "slug": {
       "type": "uid",
       "targetField": "title"
