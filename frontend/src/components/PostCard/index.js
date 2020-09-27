@@ -22,7 +22,7 @@ export default function PostCard(props) {
 				<span>{convertDate(post.created_at)}</span>
 				<span>{post.author.username}</span>
 			</div>
-			<Link to={`/posts/${post.slug}`} className={'test'}/>
+			<Link to={`/post/${post.slug}`}/>
 		</article>
 	);
 }
