@@ -10,19 +10,15 @@ const {sanitizeEntity} = require('strapi-utils');
 module.exports = {
 
   async find(ctx) {
-    let entity = await strapi.services.posts.find({published: true});
-
+    let entity = await strapi.services.posts.find({published: true, ...ctx.query});
     return sanitizeEntity(entity, {model: strapi.models.posts});
   },
   async findOne(ctx) {
-    const {id} = ctx.params;
+    const {slug} = ctx.params;
+    if (!slug) ctx.throw(404, 'Post not found');
 
-    if (!id) ctx.throw(404, 'Post not found');
-
-    let entity = await strapi.services.posts.find({slug: id, published: true});
-
+    let entity = await strapi.services.posts.find({slug: slug, published: true});
     if (entity.length !== 1) ctx.throw(404, 'Post not found');
-
     return sanitizeEntity(entity, {model: strapi.models.posts});
   }
 };
