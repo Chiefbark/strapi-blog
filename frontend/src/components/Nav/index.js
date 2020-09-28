@@ -14,7 +14,7 @@ export default function Nav(props) {
 	return Style.it(
 		styles,
 		<nav className={'nav'}>
-			<h1 className={'nav-title'}><Link to={'/'}>{title}</Link></h1>
+			<h1 className={`nav-title ${inputOpen && 'search-input-open'}`}><Link to={'/'}>{title}</Link></h1>
 			{hasSearch &&
 			<div className={'nav-search-container'}>
 				<input ref={inputRef} className={`nav-search-input ${inputOpen && 'search-input-open'}`} type={'text'} value={slug}
@@ -54,6 +54,8 @@ const styles = `
 .nav-title {
 	flex: 1;
 	text-transform: uppercase;
+	white-space: nowrap;
+	transition: opacity .25s ease;
 }
 .nav-title > a {
 	color: #FFF;
@@ -75,7 +77,7 @@ const styles = `
 	padding: 8px 0;
 	margin-right: 16px;
 }
-.search-input-open {
+.nav-search-input.search-input-open {
 	width: 250px;
 	padding: 8px 12px;
 }
@@ -83,5 +85,33 @@ const styles = `
 	cursor: pointer;
 	color: #FFF;
 	transition: color .25s ease;
+}
+
+@media screen and (max-width: 1024px) {
+	.nav {
+		width: calc(100% - 64px);
+		padding: 0 32px;
+	}
+	.nav-search-input.search-input-open {
+		width: 200px;
+	}
+}
+@media screen and (max-width: 512px) {
+	.nav {
+		width: calc(100% - 32px);
+		padding: 0 16px;
+	}
+	.nav-title.search-input-open {
+		opacity: .5;
+	}
+	.nav-search-input {
+		position: absolute;
+		transform: translate(0, -50%);
+		top: 50%;
+		right: 32px;
+	}
+	.nav-search-input.search-input-open {
+		width: calc(100vw - 112px);
+	}
 }
 `;
