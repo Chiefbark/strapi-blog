@@ -39,7 +39,6 @@ const styles = `
 	justify-content: flex-start;
 	width: calc(33% - 16px);
 	box-shadow: 1px 1px 20px 1px #00000033;
-	border-radius: 8px;
 	margin: 8px;
 }
 .postCard-header {
@@ -47,7 +46,6 @@ const styles = `
 	overflow: hidden;
 	width: 100%;
 	height: 300px;
-	border-radius: 8px 8px 0 0;
 }
 .postCard-link-img {
 	position: absolute;
