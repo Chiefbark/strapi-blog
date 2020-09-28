@@ -45,7 +45,7 @@ const styles = `
 	position: relative;
 	overflow: hidden;
 	width: 100%;
-	height: 300px;
+	height: 250px;
 }
 .postCard-link-img {
 	position: absolute;
@@ -105,18 +105,12 @@ const styles = `
 	.postCard-root {
 		width: calc(50% - 16px);
 	}
-	.postCard-header {
-		height: 250px;
-	}
 }
 @media screen and (max-width: 512px) {
 	.postCard-root {
 		flex-direction: column;
 		align-items: center;
 		width: 100%;
-	}
-	.postCard-header {
-		height: 200px;
 	}
 	.postCard-container {
 		align-self: flex-start;
