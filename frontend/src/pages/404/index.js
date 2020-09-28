@@ -1,12 +1,15 @@
 import React from 'react';
-
-import './styles.css';
+import Style from 'style-it';
 
 export default function Error() {
 	
-	return (
+	return Style.it(styles,
 		<div>
 			<h2>Error 404</h2>
 		</div>
 	)
 }
+
+const styles = `
+
+`;
