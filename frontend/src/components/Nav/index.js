@@ -1,6 +1,7 @@
 import React, {useState, useRef} from 'react';
 import Style from 'style-it';
 import {MdSearch, MdClose} from 'react-icons/md';
+import {Link} from 'react-router-dom';
 
 export default function Nav(props) {
 	
@@ -13,7 +14,7 @@ export default function Nav(props) {
 	return Style.it(
 		styles,
 		<nav className={'nav'}>
-			<h1 className={'nav-title'}>{title}</h1>
+			<h1 className={'nav-title'}><Link to={'/'}>{title}</Link></h1>
 			{hasSearch &&
 			<div className={'nav-search-container'}>
 				<input ref={inputRef} className={`nav-search-input ${inputOpen && 'search-input-open'}`} type={'text'} value={slug}
@@ -21,7 +22,7 @@ export default function Nav(props) {
 					       props.onSearchChange && props.onSearchChange(event.target.value);
 					       setSlug(event.target.value)
 				       }}
-				placeholder={'Search for posts...'}/>
+				       placeholder={'Search for posts...'}/>
 				{!inputOpen && <MdSearch className={'nav-search-icon'} size={32} onClick={() => {
 					isInputOpen(true);
 					inputRef.current.focus();
@@ -53,6 +54,10 @@ const styles = `
 .nav-title {
 	flex: 1;
 	text-transform: uppercase;
+}
+.nav-title > a {
+	color: #FFF;
+	text-decoration: none;
 }
 .nav-search-container {
 	position: relative;
