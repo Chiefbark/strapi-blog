@@ -30,8 +30,9 @@ const findPost = async (slug) => {
 	return await res.json();
 }
 
-const findPostCount = async () => {
-	const url = 'http://' + path.join(Constants.API_URL, Constants.END_POINT_POST, Constants.END_POINT_COUNT);
+const findPostCount = async (params = {}) => {
+	const url = 'http://' + path.join(Constants.API_URL, Constants.END_POINT_POST, Constants.END_POINT_COUNT) + joinParams(params);
+	console.log(url);
 	const res = await fetch(url);
 	return await res.json();
 }
