@@ -13,7 +13,7 @@ export default function Nav(props) {
 	
 	return Style.it(
 		styles,
-		<nav className={'nav'}>
+		<nav className={'nav-root'}>
 			<h1 className={`nav-title ${inputOpen && 'search-input-open'}`}><Link to={'/'}>{title}</Link></h1>
 			{hasSearch &&
 			<div className={'nav-search-container'}>
@@ -39,7 +39,7 @@ export default function Nav(props) {
 }
 
 const styles = `
-.nav {
+.nav-root {
 	position: fixed;
 	z-index: 100;
 	width: calc(100% - 128px);
@@ -74,12 +74,12 @@ const styles = `
 	border-radius: 4px;
 	outline: none;
 	transition: width .25s ease, padding .25s ease;
-	padding: 8px 0;
+	padding: 12px 0;
 	margin-right: 16px;
 }
 .nav-search-input.search-input-open {
 	width: 250px;
-	padding: 8px 12px;
+	padding: 12px;
 }
 .nav-search-icon {
 	cursor: pointer;
