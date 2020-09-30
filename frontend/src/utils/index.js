@@ -9,7 +9,7 @@ export const Constants = {
 	API_URL: 'localhost:1337',
 	END_POINT_POST: 'posts',
 	END_POINT_COUNT: 'count',
-	MAX_LIMIT: 15,
+	MAX_LIMIT: 6,
 	QUERY_CONTAINS: '_contains',
 	QUERY_START: '_start',
 	QUERY_LIMIT: '_limit',
