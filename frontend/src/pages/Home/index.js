@@ -1,61 +1,64 @@
 import React, {useState, useEffect} from 'react';
-import {MdSearch} from 'react-icons/md';
 import Style from 'style-it';
 
-import PostCard from '../../components/PostCard';
-import './styles.css';
+import POST from '../../api/posts';
 
-const findPosts = async (slug = '') => {
-	const payload = await fetch(`http://localhost:1337/posts/${slug}`);
-	return await payload.json();
-}
+import PostCard from '../../components/PostCard';
+import Nav from '../../components/Nav';
+import {Constants} from '../../utils';
+import Pagination from '../../components/Pagination';
 
 export default () => {
+	const [count, setCount] = useState(0);
+	const [page, setPage] = useState(1);
 	const [posts, setPosts] = useState(undefined);
-	const [filtered, setFiltered] = useState(undefined);
 	const [slug, setSlug] = useState('');
-	const [inputShown, isInputShown] = useState(false);
 	
 	useEffect(() => {
-		findPosts().then(r => {
-			setPosts(r);
-		});
+		POST.findPosts().then(r => setPosts(r));
 	}, []);
 	
 	useEffect(() => {
-		if (posts) setFiltered(posts.filter(e => e.slug.includes(slug)));
-	}, [slug, posts]);
+		POST.findPostLike(slug, (page - 1) * Constants.MAX_LIMIT).then(r => setPosts(r));
+	}, [page]);
 	
-	return Style.it(
-		styles,
+	useEffect(() => {
+		if (page === 1)
+			POST.findPostLike(slug, (page - 1) * Constants.MAX_LIMIT).then(r => setPosts(r));
+		else
+			POST.findPostLike(slug, (page - 1) * Constants.MAX_LIMIT).then(r => setPosts([...posts, ...r]));
+		const params = {};
+		params[`slug${Constants.QUERY_CONTAINS}`] = slug;
+		POST.findPostCount(params).then(r => setCount(r));
+	}, [slug]);
+	
+	return Style.it(styles,
 		<div className={'home-root'}>
-			<nav className={'home-nav'}>
-				<h2>HOME PAGE</h2>
-				<div>
-					<input type={'search'} placeholder={'Type to search posts...'} onChange={value => setSlug(value.target.value)}
-					       className={inputShown ? 'shown' : ''}/>
-					<MdSearch size={32} color={inputShown ? '#FFF' : ''} onClick={() => isInputShown(true)}/>
-				</div>
-			</nav>
+			<Nav title={'home'} hasSearch={true} onSearchChange={value => setSlug(value)}/>
 			<main className={'home-layout'}>
-				{filtered && filtered.length !== 0 && filtered.map(e => <PostCard key={e.slug} post={e}/>)}
-				{filtered && filtered.length !== 0 && filtered.map(e => <PostCard key={e.slug} post={e}/>)}
-				{filtered && filtered.length === 0 && !slug &&
+				{posts && posts.length !== 0 && posts.map((e, index) => {
+					if (index < Constants.MAX_LIMIT)
+						return <PostCard key={e.slug} post={e}/>
+				})}
+				{posts && posts.length === 0 && !slug &&
 				<div className={'home-container'}>
 					<img className={'home-empty'} src={require('./empty_list.png')} alt={'empty'}/>
 					<p className={'home-text'}>We haven't published anything yet</p>
 					<p className={'home-sub-text'}>Probably the author didn't write anything...</p>
 				</div>
 				}
-				{filtered && filtered.length === 0 && slug &&
+				{posts && posts.length === 0 && slug &&
 				<div className={'home-container'}>
 					<img className={'home-empty'} src={require('./empty_search.png')} alt={'empty'}/>
 					<p className={'home-text'}>We couldn't find any post!</p>
 					<p className={'home-sub-text'}>Try some different keywords</p>
 				</div>
 				}
-				{!filtered &&
+				{!posts &&
 				<span className={'home-loader'}/>
+				}
+				{posts && posts.length !== 0 &&
+				<Pagination current={page} count={count} maxPerPage={Constants.MAX_LIMIT} onPageChanged={e => setPage(e)}/>
 				}
 			</main>
 		</div>
@@ -65,7 +68,9 @@ export default () => {
 const styles = `
 .home-root {
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
 }
 .home-layout {
 	display: flex;
@@ -87,6 +92,7 @@ const styles = `
 	width: 33%;
 }
 .home-text, .home-sub-text {
+	text-align: center;
 	text-transform: uppercase;
 	font-weight: bold;
 	font-size: 16pt;
@@ -97,6 +103,22 @@ const styles = `
 	font-weight: normal;
 	font-size: 12pt;
 	margin: 0 0 8px 0;
+}
+.home-load-more {
+	border: none;
+	color: #000;
+	font-size: 12pt;
+	cursor: pointer;
+	outline: unset;
+	padding: 16px 32px;
+	margin-bottom: 32px;
+	transition: background-color .25s ease;
+}
+.home-load-more:hover {
+	background-color: #DDD;
+}
+.home-load-more:active {
+	background-color: #EEE;
 }
 @media screen and (max-width: 512px) {
 	.home-layout {
