@@ -41,6 +41,7 @@ export default function Nav(props) {
 const styles = `
 .nav-root {
 	position: fixed;
+	top: 0;
 	z-index: 100;
 	width: calc(100% - 128px);
 	display: flex;
