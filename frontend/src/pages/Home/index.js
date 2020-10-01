@@ -34,7 +34,7 @@ export default () => {
 	
 	return Style.it(styles,
 		<div className={'home-root'}>
-			<Nav title={'home'} hasSearch={true} onSearchChange={value => setSlug(value)}/>
+			<Nav title={'Chiefbark.dev'} hasSearch={true} onSearchChange={value => setSlug(value)}/>
 			<main className={'home-layout'}>
 				{posts && posts.length !== 0 && posts.map((e, index) => {
 					if (index < Constants.MAX_LIMIT)
