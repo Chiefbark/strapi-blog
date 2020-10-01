@@ -22,7 +22,7 @@ export default function Nav(props) {
 					       props.onSearchChange && props.onSearchChange(event.target.value);
 					       setSlug(event.target.value)
 				       }}
-				       placeholder={'Search for posts...'}/>
+				       placeholder={'Search for posts or tags'}/>
 				{!inputOpen && <MdSearch className={'nav-search-icon'} size={32} onClick={() => {
 					isInputOpen(true);
 					inputRef.current.focus();
@@ -89,7 +89,7 @@ const styles = `
 }
 
 @media screen and (max-width: 1024px) {
-	.nav {
+	.nav-root {
 		width: calc(100% - 64px);
 		padding: 0 32px;
 	}
@@ -98,7 +98,7 @@ const styles = `
 	}
 }
 @media screen and (max-width: 512px) {
-	.nav {
+	.nav-root {
 		width: calc(100% - 32px);
 		padding: 0 16px;
 	}
