@@ -39,6 +39,11 @@
       "plugin": "users-permissions",
       "model": "user",
       "via": "user"
+    },
+    "tags": {
+      "collection": "tags",
+      "via": "posts",
+      "dominant": true
     }
   }
 }
