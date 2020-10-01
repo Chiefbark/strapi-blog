@@ -11,8 +11,11 @@ export default function PostCard(props) {
 	return Style.it(styles,
 		<article data-slug={post.slug} className={'postCard-root'}>
 			<div className={'postCard-header'}>
-				<Link className={'postCard-link-img'} to={`/post/${post.slug}`}/>
 				<img className={'postCard-cover'} src={`http://localhost:1337${post.cover.formats.small.url}`} alt={post.slug}/>
+				<Link className={'postCard-link-img'} to={`/post/${post.slug}`}/>
+				<div className={'postCard-tags'}>
+					{post.tags && post.tags.map(e => <span key={e.name} className={'postCard-tag'}>{e.name}</span>)}
+				</div>
 			</div>
 			<div className={'postCard-container'}>
 				<h2 className={'postCard-title'}>
@@ -49,15 +52,17 @@ const styles = `
 	left: 0;
 	bottom: 0;
 	right: 0;
-	z-index: 5;
 	transition: background-color .33s ease;
 }
 .postCard-link-img:hover {
 	background-color: #00000033;
 }
-.postCard-link-img:hover ~ .postCard-cover {
+.postCard-header:hover > .postCard-cover {
 	max-width: 110%;
 	max-height: 110%;
+}
+.postCard-header:hover > .postCard-tags {
+	opacity: 1;
 }
 .postCard-cover {
 	position: absolute;
@@ -70,6 +75,29 @@ const styles = `
 	height: 150%;
 	object-fit: cover;
 	transition: max-width .33s ease, max-height .33s ease;
+}
+.postCard-tags {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: flex-end;
+	position: absolute;
+	top: 8px;
+	width: calc(100% - 16px);
+	opacity: 0;
+	margin: 0 8px;
+	user-select: none;
+	transition: opacity .25s ease;
+}
+.postCard-tag {
+	text-transform: capitalize;
+	font-size: 12pt;
+	background-color: #555;
+	color: #FFF;
+	border-radius: 4px;
+	padding: 4px 8px;
+	margin: 4px;
 }
 .postCard-container {
 	flex: 1;
