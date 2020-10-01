@@ -1,12 +1,8 @@
 import React from 'react';
-import moment from 'moment';
+import {convertDate} from '../../utils';
 import Style from 'style-it';
 import {Link} from 'react-router-dom';
 
-const convertDate = (iso_date) => {
-	const date = moment(iso_date);
-	return date.format('MMMM D, YYYY');
-}
 
 export default function PostCard(props) {
 	
@@ -16,7 +12,7 @@ export default function PostCard(props) {
 		<article data-slug={post.slug} className={'postCard-root'}>
 			<div className={'postCard-header'}>
 				<Link className={'postCard-link-img'} to={`/post/${post.slug}`}/>
-				<img className={'postCard-cover'} src={`http://localhost:1337${post.cover.url}`} alt={post.slug}/>
+				<img className={'postCard-cover'} src={`http://localhost:1337${post.cover.formats.small.url}`} alt={post.slug}/>
 			</div>
 			<div className={'postCard-container'}>
 				<h2 className={'postCard-title'}>
