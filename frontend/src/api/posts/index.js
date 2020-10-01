@@ -12,11 +12,12 @@ const findPosts = async (start = 0) => {
 	return await res.json();
 }
 
-const findPostLike = async (slug, start = 0) => {
+const findPostLike = async (search, start = 0) => {
 	const params = {};
 	params[Constants.QUERY_START] = start;
 	params[Constants.QUERY_LIMIT] = Constants.MAX_LIMIT;
-	params[`slug${Constants.QUERY_CONTAINS}`] = slug;
+	params[`_where[_or][0][slug${Constants.QUERY_CONTAINS}]`] = search;
+	params[`_where[_or][1][tags.name${Constants.QUERY_CONTAINS}]`] = search;
 	params[Constants.QUERY_SORT] = 'created_at:DESC';
 	
 	const url = 'http://' + path.join(Constants.API_URL, Constants.END_POINT_POST) + joinParams(params);
@@ -32,7 +33,6 @@ const findPost = async (slug) => {
 
 const findPostCount = async (params = {}) => {
 	const url = 'http://' + path.join(Constants.API_URL, Constants.END_POINT_POST, Constants.END_POINT_COUNT) + joinParams(params);
-	console.log(url);
 	const res = await fetch(url);
 	return await res.json();
 }
