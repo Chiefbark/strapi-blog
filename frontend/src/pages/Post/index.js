@@ -31,9 +31,12 @@ export default function Post(props) {
 					<div className={'post-header'}>
 						<div>
 							<h2>{post.title}</h2>
-							<small>{convertDate(post.created_at)}</small>
+							<span>{convertDate(post.created_at)}</span>
 						</div>
-						<small>Written by <strong>{post.author.username}</strong></small>
+						<div>
+							<small>Written by <strong>{post.author.username}</strong></small>
+							{post && post.tags && post.tags.map(e => <span key={e.name} className={'post-tag'}>{e.name}</span>)}
+						</div>
 					</div>
 					<hr/>
 					<div dangerouslySetInnerHTML={{__html: content}} className={'post-content'}/>
@@ -71,14 +74,36 @@ const styles = `
 	display: flex;
 	align-items: center;
 }
+.post-tag {
+	text-transform: capitalize;
+	font-size: 12pt;
+	background-color: #555;
+	color: #FFF;
+	border-radius: 4px;
+	padding: 4px 8px;
+	margin: 4px;
+}
+.post-tag:nth-last-child(1) {
+	margin-right: 0;
+}
 hr {
 	width: 100%;
 	margin: 30px 0 10px 0;
 }
-.post-header>div>h2 {
+.post-header>div>h2, .post-header>div>small {
 	flex: 1;
 }
 .post-content img {
 	max-width: 100%;
+}
+@media screen and (max-width: 1024px) {
+	.post-container {
+		width: 75%;
+	}
+}
+@media screen and (max-width: 512px) {
+	.post-container {
+		width: 95%;
+	}
 }
 `;
