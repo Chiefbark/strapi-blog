@@ -1,8 +1,15 @@
+import moment from 'moment';
+
 export const joinParams = (params) => {
 	const entries = Object.entries(params);
 	let query = '?';
 	for (let entry of entries) query += `${entry[0]}=${entry[1]}&`;
 	return query;
+}
+
+export const convertDate = (iso_date) => {
+	const date = moment(iso_date);
+	return date.format('MMMM D, YYYY');
 }
 
 export const Constants = {
