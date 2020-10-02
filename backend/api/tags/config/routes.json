@@ -1,3 +1,52 @@
 {
-  "routes": []
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/tags",
+      "handler": "tags.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/tags/count",
+      "handler": "tags.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/tags/:slug",
+      "handler": "tags.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/tags",
+      "handler": "tags.create",
+      "config": {
+        "policies": ["global::unauthorized"]
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/tags/:id",
+      "handler": "tags.update",
+      "config": {
+        "policies": ["global::unauthorized"]
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/tags/:id",
+      "handler": "tags.delete",
+      "config": {
+        "policies": ["global::unauthorized"]
+      }
+    }
+  ]
 }
