@@ -103,9 +103,5 @@ const styles = `
 	.pagination-root {
 		justify-content: center;
 	}
-	.pagination-root > .pagination-index:nth-of-type(2),
-	.pagination-root > .pagination-index:nth-last-of-type(2) {
-		display: none;
-	}
 }
 `;
