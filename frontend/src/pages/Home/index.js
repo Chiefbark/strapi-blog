@@ -23,10 +23,7 @@ export default () => {
 	}, [page]);
 	
 	useEffect(() => {
-		if (page === 1)
-			POST.findPostLike(slug, (page - 1) * Constants.MAX_LIMIT).then(r => setPosts(r));
-		else
-			POST.findPostLike(slug, (page - 1) * Constants.MAX_LIMIT).then(r => setPosts([...posts, ...r]));
+		POST.findPostLike(slug, (page - 1) * Constants.MAX_LIMIT).then(r => setPosts(r));
 		const params = {};
 		params[`slug${Constants.QUERY_CONTAINS}`] = slug;
 		POST.findPostCount(params).then(r => setCount(r));
