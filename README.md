@@ -8,6 +8,7 @@ Simple blog website built with [Strapi](https://strapi.io/) and [ReactJS](https:
 		- [Home view](#home-view)
 		- [Post view](#post-view)
 	- [Usage](#usage)
+	- [Credentials](#credentials)
 
 ## Overview
 
@@ -56,3 +57,13 @@ You can filter the posts by name and/or tag too.
     npm run start
     ```
     Your react instance will load at http://localhost:3000/
+
+## Credentials
+
+**John Doe** (Author account)
+- **Email**: johndoe@domain.com 
+- **Password**: M123456789m
+
+**Admin** (Admin account)
+- **Email**: admin@domain.com 
+- **Password**: M123456789m
