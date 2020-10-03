@@ -61,9 +61,6 @@ const styles = `
 	max-width: 110%;
 	max-height: 110%;
 }
-.postCard-header:hover > .postCard-tags {
-	opacity: 1;
-}
 .postCard-cover {
 	position: absolute;
 	transform: translate(-50%, -50%);
@@ -85,7 +82,6 @@ const styles = `
 	position: absolute;
 	top: 8px;
 	width: calc(100% - 16px);
-	opacity: 0;
 	margin: 0 8px;
 	user-select: none;
 	transition: opacity .25s ease;
