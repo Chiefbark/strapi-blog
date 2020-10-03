@@ -34,7 +34,8 @@ export default function Post(props) {
 							<span>{convertDate(post.created_at)}</span>
 						</div>
 						<div>
-							<small>Written by <strong>{post.author.username}</strong></small>
+							<small>Written
+								by <strong>{post.created_by.username ? post.created_by.username : `${post.created_by.firstname} ${post.created_by.lastname}`}</strong></small>
 							{post && post.tags && post.tags.map(e => <span key={e.name} className={'post-tag'}>{e.name}</span>)}
 						</div>
 					</div>

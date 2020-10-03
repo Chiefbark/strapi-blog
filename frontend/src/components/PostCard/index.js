@@ -24,7 +24,10 @@ export default function PostCard(props) {
 					</Link>
 				</h2>
 				<span className={'postCard-text'}>{convertDate(post.created_at)}</span>
-				<span className={'postCard-text postCard-author'}>By {post.author.username}</span>
+				<span
+					className={'postCard-text postCard-author'}>
+					By {post.created_by.username ? post.created_by.username : `${post.created_by.firstname} ${post.created_by.lastname}`}
+				</span>
 			</div>
 		</article>
 	);
